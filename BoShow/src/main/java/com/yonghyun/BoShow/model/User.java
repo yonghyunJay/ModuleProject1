@@ -20,5 +20,11 @@ public class User {
 	private String keyword3;
 	private String keyword4;
 	private String keyword5;
-	
+	private boolean typeGoogleNewsEn;
+	private boolean typeYoutubeEn;
+	private boolean typeNaverNewsEn;
+	private boolean typeNaverBlogEn;
+	private boolean typeKakaoNewsEn;
+	private boolean typeKakaoBlogEn;
+	private boolean typeKakaoVideoEn;
 }

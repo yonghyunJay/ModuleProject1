@@ -49,4 +49,9 @@ public class UserController {
 	    session.invalidate();
 	    return "redirect:/";
 	}
+	
+	@GetMapping({ "/setting" })
+	public String setting() {
+	    return "setting";
+	}
 }
