@@ -15,4 +15,10 @@ public class User {
 	private String email;
 	private String pwd;
 	private String name;
+	private String keyword1;
+	private String keyword2;
+	private String keyword3;
+	private String keyword4;
+	private String keyword5;
+	
 }
