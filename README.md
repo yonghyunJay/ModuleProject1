@@ -66,12 +66,17 @@ https://startbootstrap.com/previews/shop-homepage/
   - EMAIL
   - KEYWORD[5]
 
+##### 실시간 크롤링DB 업데이트
+
+- Spring Boot websocket
+
 
 
 #### 3. View page
 
 - Keyword 크롤링 정보 표시
 - 로그아웃
+- 키워드별 특정 div 새로고침
 
 
 
@@ -80,6 +85,7 @@ https://startbootstrap.com/previews/shop-homepage/
 - 키워드 추가 / 삭제
 - 검색 유형 선택
 - 저장
+- 특정 div 새로고침
 
 
 
@@ -88,6 +94,7 @@ https://startbootstrap.com/previews/shop-homepage/
 - 사용자 정보 수정
 - 저장
 - 탈퇴
+- 키워드별 특정 div 새로고침
 
 
 
