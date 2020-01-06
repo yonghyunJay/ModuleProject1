@@ -44,10 +44,10 @@
   - 블로그
 - 유튜브 `규현`
   - **컨텐츠**
-- 구글 `용현`
+- 구글 `원상`
   - **뉴스**
-- 블로터 뉴스
-- ZD넷 뉴스
+- 블로터 뉴스 `용현`
+- ZD넷 뉴스`용현`
 - ...
 
 
@@ -58,13 +58,25 @@
 
 https://startbootstrap.com/previews/shop-homepage/
 
-##### DB
+##### User DB
 
 - USER
   - ID
   - PW
   - EMAIL
   - KEYWORD[5]
+  - Using Site
+
+##### Crawled DB
+
+- Contents
+  - Title
+  - Thumbnail
+  - Description
+  - Link
+  - Ref. Site
+
+
 
 ##### 실시간 크롤링DB 업데이트
 
