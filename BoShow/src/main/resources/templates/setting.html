@@ -28,54 +28,35 @@
 
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
 							<div class="card-body">
 								<h4 class="card-title">
-									<a href="#">Item One</a>
+									<a href="#">Keyword</a>
 								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
+								
+								<p> Keyword 1 <input type="text" name="keyword1" /></p>
+								<p> Keyword 2 <input type="text" name="keyword2" /></p>
+								<p> Keyword 3 <input type="text" name="keyword3" /></p>
+								<p> Keyword 4 <input type="text" name="keyword4" /></p>
+								<p> Keyword 5 <input type="text" name="keyword5" /></p>
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
 							<div class="card-body">
 								<h4 class="card-title">
-									<a href="#">Item Two</a>
+									<a href="#">Resource</a>
 								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor
-									sit amet.</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
+								<label><input type="checkbox" name="type" value="typeYoutube"> Youtube</label><br>
+								<label><input type="checkbox" name="type" value="typeKaVideo"> Kakao Video</label><br>
+								<label><input type="checkbox" name="type" value="typeKaBlog"> Kakao Blog</label><br>
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Three</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
+						<button>SAVE</button>
 					</div>
 
 				</div>
@@ -92,4 +73,11 @@
 
 	<!-- Footer -->
 	<footer th:replace="common/footer"></footer>
+	
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		$('button').click(function() {
+			console.log("clicked!!");
+		});
+	</script>
 </html>
