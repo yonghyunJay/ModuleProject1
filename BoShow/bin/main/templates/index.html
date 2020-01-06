@@ -15,15 +15,15 @@
 
 				<h1 class="my-4">Key words</h1>
 				<div class="list-group" th:if="${session.user_info} != null">
-					<a href="#" class="list-group-item"
+					<a href="#" class="list-group-item active" id="item1"
 						th:if="${session.user_info.keyword1} != null">[[${session.user_info.keyword1}]]</a>
-					<a href="#" class="list-group-item"
+					<a href="#" class="list-group-item" id="item2"
 						th:if="${session.user_info.keyword2} != null">[[${session.user_info.keyword2}]]</a>
-					<a href="#" class="list-group-item"
+					<a href="#" class="list-group-item" id="item3"
 						th:if="${session.user_info.keyword3} != null">[[${session.user_info.keyword3}]]</a>
-					<a href="#" class="list-group-item"
+					<a href="#" class="list-group-item" id="item4"
 						th:if="${session.user_info.keyword4} != null">[[${session.user_info.keyword4}]]</a>
-					<a href="#" class="list-group-item"
+					<a href="#" class="list-group-item" id="item5"
 						th:if="${session.user_info.keyword5} != null">[[${session.user_info.keyword5}]]</a>
 				</div>
 
@@ -34,161 +34,8 @@
 
 				<div class="row">
 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item One</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Two</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor
-									sit amet.</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Three</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Four</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Five</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor
-									sit amet.</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Six</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Four</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Five</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor
-									sit amet.</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Six</a>
-								</h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Read more</small>
-							</div>
-						</div>
-					</div>
+					<contents th:replace="contents"></contents>
+					
 				</div>
 				<!-- /.row -->
 
@@ -203,4 +50,92 @@
 
 	<!-- Footer -->
 	<footer th:replace="common/footer"></footer>
+	
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script>
+		$('.list-group-item').click(function() {
+			console.log(this.id);
+			$.ajax({
+				url : '/getYoutube',
+				type : 'get',
+				data : {
+					'youtubeTopic' : $('#item2').text()
+				},
+				async : false,
+				success : function(res) {
+					var items = res.items;
+					for ( var i in items) {
+						var title = items[i].snippet.title;
+						console.log(title);
+						var description = items[i].snippet.description;
+						console.log(description);
+						var thumbnails = items[i].snippet.thumbnails.medium.url;
+						console.log(thumbnails);
+						var datetime = items[i].snippet.publishedAt;
+						console.log(datetime);
+						var videoId = items[i].id.videoId;
+						var url = "https://www.youtube.com/watch?v="
+								+ videoId;
+						console.log(url);
+						
+					}
+				}
+			});
+			
+			console.log("------------------------------------");
+			
+			$.ajax({
+				url : '/getKakaoVideo',
+				type : 'get',
+				data : {
+					'videoTopic' : $('#item2').text()
+				},
+				async : false,
+				success : function(res) {
+					var documents = res.documents;
+					for ( var i in documents) {
+						var title = documents[i].title;
+						console.log(title);
+						var thumbnail = documents[i].thumbnail;
+						console.log(thumbnail);
+						var url = documents[i].url;
+						console.log(url);
+						var datetime = documents[i].datetime;
+						console.log(datetime);
+						
+					}
+				}
+			});
+			
+			console.log("------------------------------------");
+			
+			$.ajax({
+				url : '/getKakaoBlog',
+				type : 'get',
+				data : {
+					'blogTopic' : $('#item2').text()
+				},
+				async : false,
+				success : function(res) {
+					var documents = res.documents;
+					for ( var i in documents) {
+						var title = documents[i].title;
+						console.log(title);
+						var contents = documents[i].contents;
+						console.log(contents);
+						var thumbnail = documents[i].thumbnail;
+						console.log(thumbnail);
+						var url = documents[i].url;
+						console.log(url);
+						var datetime = documents[i].datetime;
+						console.log(datetime);
+						var blogname = documents[i].blogname;
+						console.log(blogname);
+						
+					}
+				}
+			})
+		});
+	</script>
 </html>
