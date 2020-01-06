@@ -56,11 +56,12 @@
 	<script>
 		$('.list-group-item').click(function() {
 			console.log(this.id);
+			var selId = '#'+ this.id;
 			$.ajax({
 				url : '/getYoutube',
 				type : 'get',
 				data : {
-					'youtubeTopic' : $('#item2').text()
+					'youtubeTopic' : $(selId).text()
 				},
 				async : false,
 				success : function(res) {
@@ -89,7 +90,7 @@
 				url : '/getKakaoVideo',
 				type : 'get',
 				data : {
-					'videoTopic' : $('#item2').text()
+					'videoTopic' : $(selId).text()
 				},
 				async : false,
 				success : function(res) {
@@ -114,7 +115,7 @@
 				url : '/getKakaoBlog',
 				type : 'get',
 				data : {
-					'blogTopic' : $('#item2').text()
+					'blogTopic' : $(selId).text()
 				},
 				async : false,
 				success : function(res) {
