@@ -15,8 +15,8 @@
 
 				<h1 class="my-4">Setting</h1>
 				<div class="list-group">
-					<a href="#" class="list-group-item active">Keyword</a>
-					<a href="#"	class="list-group-item">User</a>
+					<a href="/setting" class="list-group-item active">Keyword</a> <a
+						href="/userInfo" class="list-group-item">User</a>
 				</div>
 
 			</div>
@@ -29,34 +29,56 @@
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
 							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Keyword</a>
-								</h4>
-								
-								<p> Keyword 1 <input type="text" name="keyword1" /></p>
-								<p> Keyword 2 <input type="text" name="keyword2" /></p>
-								<p> Keyword 3 <input type="text" name="keyword3" /></p>
-								<p> Keyword 4 <input type="text" name="keyword4" /></p>
-								<p> Keyword 5 <input type="text" name="keyword5" /></p>
+								<h4 class="card-title">Keyword</h4>
+
+								<form method="post" action="/setting">
+									<p>
+										Keyword 1 <input type="text" name="keyword1" id="keyword1">
+									</p>
+									<p>
+										Keyword 2 <input type="text" name="keyword2" id="keyword2" />
+									</p>
+									<p>
+										Keyword 3 <input type="text" name="keyword3" id="keyword3" />
+									</p>
+									<p>
+										Keyword 4 <input type="text" name="keyword4" id="keyword4" />
+									</p>
+									<p>
+										Keyword 5 <input type="text" name="keyword5" id="keyword5" />
+									</p>
+									<button class="btn btn-danger btn-inline" id="save">SAVE</button>
+								</form>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
 							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Resource</a>
-								</h4>
-								<label><input type="checkbox" name="type" value="typeYoutube"> Youtube</label><br>
-								<label><input type="checkbox" name="type" value="typeKaVideo"> Kakao Video</label><br>
-								<label><input type="checkbox" name="type" value="typeKaBlog"> Kakao Blog</label><br>
+								<h4 class="card-title">Resource</h4>
+
+								<label> <input
+									th:if="${session.user_info.typeYoutubeEn} != ture"
+									type="checkbox" name="resource1" value="typeYoutube"> <input
+									th:if="${session.user_info.typeYoutubeEn} == ture"
+									type="checkbox" name="resource1" value="typeYoutube" checked>
+									Youtube
+								</label> <br> <label> <input
+									th:if="${session.user_info.typeKakaoVideoEn} != ture"
+									type="checkbox" name="resource1" value="typeKaVideo"> <input
+									th:if="${session.user_info.typeKakaoVideoEn} == ture"
+									type="checkbox" name="resource1" value="typeKaVideo" checked>
+									Kakao Video
+								</label> <br> <label> <input
+									th:if="${session.user_info.typeKakaoBlogEn} != ture"
+									type="checkbox" name="resource1" value="typeKaBlog"> <input
+									th:if="${session.user_info.typeKakaoBlogEn} == ture"
+									type="checkbox" name="resource1" value="typeKaBlog" checked>
+									Kakao Blog
+								</label> <br>
 							</div>
 						</div>
-					</div>
-					
-					<div class="col-lg-4 col-md-6 mb-4">
-						<button>SAVE</button>
 					</div>
 
 				</div>
@@ -73,11 +95,39 @@
 
 	<!-- Footer -->
 	<footer th:replace="common/footer"></footer>
-	
+
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script>
-		$('button').click(function() {
-			console.log("clicked!!");
+		window.onload = function() {
+			$("input[name='keyword1']").attr('value',
+					'[[${session.user_info.keyword1}]]');
+			$("input[name='keyword2']").attr('value',
+					'[[${session.user_info.keyword2}]]');
+			$("input[name='keyword3']").attr('value',
+					'[[${session.user_info.keyword3}]]');
+			$("input[name='keyword4']").attr('value',
+					'[[${session.user_info.keyword4}]]');
+			$("input[name='keyword5']").attr('value',
+					'[[${session.user_info.keyword5}]]');
+		};
+
+		// 		$('button').click(function() {			
+		// 			console.log($("input[name='keyword1']").val());
+		// 			console.log($("input[name='keyword2']").val());
+		// 			console.log($("input[name='keyword3']").val());
+		// 			console.log($("input[name='keyword4']").val());
+		// 			console.log($("input[name='keyword5']").val());
+
+		// 			console.log($("input:checkbox[name='resource1']").is(":checked"));
+		// 			console.log($("input:checkbox[name='resource2']").is(":checked"));
+		// 			console.log($("input:checkbox[name='resource3']").is(":checked"));
+
+		// 			$("form").submit();
+		// 		});
+
+		$('#save').click(function() {
+			$("form").submit();
+			return false;
 		});
 	</script>
 </html>

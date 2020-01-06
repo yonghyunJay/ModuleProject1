@@ -55,34 +55,47 @@
 
 	<script>
 		$('.list-group-item').click(function() {
+			var content = {
+			        title : '',
+			        description : '',
+			        thumbnails : '',
+			        url : ''
+				};
+			
+			var dataSet = new Array();
+
 			console.log(this.id);
 			var selId = '#'+ this.id;
-			$.ajax({
-				url : '/getYoutube',
-				type : 'get',
-				data : {
-					'youtubeTopic' : $(selId).text()
-				},
-				async : false,
-				success : function(res) {
-					var items = res.items;
-					for ( var i in items) {
-						var title = items[i].snippet.title;
-						console.log(title);
-						var description = items[i].snippet.description;
-						console.log(description);
-						var thumbnails = items[i].snippet.thumbnails.medium.url;
-						console.log(thumbnails);
-						var datetime = items[i].snippet.publishedAt;
-						console.log(datetime);
-						var videoId = items[i].id.videoId;
-						var url = "https://www.youtube.com/watch?v="
-								+ videoId;
-						console.log(url);
+// 			$.ajax({
+// 				url : '/getYoutube',
+// 				type : 'get',
+// 				data : {
+// 					'youtubeTopic' : $(selId).text()
+// 				},
+// 				async : false,
+// 				success : function(res) {
+// 					var items = res.items;
+// 					for ( var i in items) {
+// 						var title = items[i].snippet.title;
+// 						console.log(title);
+																		
+// 						var description = items[i].snippet.description;
+// 						console.log(description);
 						
-					}
-				}
-			});
+// 						var thumbnails = items[i].snippet.thumbnails.medium.url;
+// 						console.log(thumbnails);
+						
+// 						var datetime = items[i].snippet.publishedAt;
+// 						console.log(datetime);
+// 						var videoId = items[i].id.videoId;
+// 						var url = "https://www.youtube.com/watch?v="
+// 								+ videoId;
+// 						console.log(url);
+
+// 						if(++i > 5)	break;
+// 					}
+// 				}
+// 			});
 			
 			console.log("------------------------------------");
 			
@@ -98,12 +111,17 @@
 					for ( var i in documents) {
 						var title = documents[i].title;
 						console.log(title);
+						
 						var thumbnail = documents[i].thumbnail;
 						console.log(thumbnail);
+						
 						var url = documents[i].url;
 						console.log(url);
+						
 						var datetime = documents[i].datetime;
 						console.log(datetime);
+						
+						if(++i > 5)	break;
 						
 					}
 				}
@@ -123,20 +141,29 @@
 					for ( var i in documents) {
 						var title = documents[i].title;
 						console.log(title);
+						
 						var contents = documents[i].contents;
 						console.log(contents);
+						
 						var thumbnail = documents[i].thumbnail;
 						console.log(thumbnail);
+						
 						var url = documents[i].url;
 						console.log(url);
+						
 						var datetime = documents[i].datetime;
-						console.log(datetime);
+						//console.log(datetime);
 						var blogname = documents[i].blogname;
-						console.log(blogname);
+						//console.log(blogname);
+						
+						if(++i > 5)	break;
 						
 					}
 				}
 			})
+			
+			console.log('=======================================');
+
 		});
 	</script>
 </html>
