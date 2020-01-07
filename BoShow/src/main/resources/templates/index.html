@@ -34,8 +34,6 @@
 
 				<div class="row">
 
-					<contents th:replace="contents"></contents>
-
 				</div>
 				<!-- /.row -->
 
@@ -74,13 +72,18 @@
 			return array;
 		}
 
-		$('.list-group-item').click(function() {
+		function keyword() {
 
 			var listadd = [];
 
 			//console.log(this.id);
 			
-			var selId = '#' + this.id;
+			var selId;
+			if(this.id != null){
+				selId = '#'+ this.id;
+			}else{
+				selId = '#item1';
+			}
 			
 			$("#item1").removeClass("active");
 			$("#item2").removeClass("active");
@@ -323,10 +326,25 @@
 
 				html += '<div class="card-footer">'
 				html += '<small class="text-muted">'
-				html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small></div></div></div>';
+				html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small>'
+	 			
+	 			if (listadd[i].ref == "youtube" ){
+	 				html += '<small style="position:absolute; right:21px; color:red;"><i class="fab fa-youtube fa-2x"></i></small>';
+	 			}
+	 			else if (listadd[i].ref == "kakao" ){
+	 				html += '<small style="position:absolute; right:21px;"><img src="https://t1.kakaocdn.net/kakaocorp/admin/main-banner/136" class="img_thumb" width="26" height="26" alt=""></small>';
+	 			}
+	 			else if (listadd[i].ref == "naver" ){
+	 				html += '<small style="position:absolute; right:21px;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="icon__1Ak7E" aria-hidden="true"><g fill="none" fill-rule="evenodd"><path fill="#03C75A" d="M0 26h26V0H0z"></path><path fill="#FFF" d="M6.54 7.049H11l4.221 6.16v-6.16h4.398V18.95h-4.46l-4.22-6.161v6.161h-4.4z"></path></g></svg></small>'
+				}
+	 			html += '</div></div></div>'
 			}
 
 			$('#view > .row').html(html);
-		});
+		}
+		
+		$('document').ready(keyword);
+		
+ 		$('.list-group-item').click(keyword);
 	</script>
 </html>

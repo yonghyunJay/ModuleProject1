@@ -1,16 +1,10 @@
 package com.yonghyun.BoShow.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +18,7 @@ public class RestTemplateController {
 	@GetMapping("getYoutube")
 	public Map<String, Object> getYoutube(@RequestParam("youtubeTopic") String youtubeTopic) {
 		RestTemplate rt = new RestTemplate();
+		
 		Map<String, Object> map = 
 					rt.getForObject("https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDh6iWJUUbTzDfrki-eoXbGzfCDo4XbJqM&q=" + youtubeTopic, Map.class);
 
