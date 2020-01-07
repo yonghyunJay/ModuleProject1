@@ -55,7 +55,9 @@
 
 	<script>
 		$('.list-group-item').click(function() {
-			console.log(this.id);
+			var listadd = [];
+			
+			//console.log(this.id);
 			var selId = '#'+ this.id;
 			
 			$("#item1").removeClass("active");
@@ -74,24 +76,28 @@
 				async : false,
 				success : function(res) {
 					var items = res.items;
-					for ( var i in items) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = items[i].snippet.title;
-						console.log(title);
-																		
+						//console.log(title);
 						var description = items[i].snippet.description;
-						console.log(description);
-						
-						var thumbnails = items[i].snippet.thumbnails.medium.url;
-						console.log(thumbnails);
-						
+						//console.log(description);
+						var thumbnail = items[i].snippet.thumbnails.medium.url;
+						//console.log(thumbnails);						
 						var datetime = items[i].snippet.publishedAt;
-						console.log(datetime);
+						//console.log(datetime);
 						var videoId = items[i].id.videoId;
 						var url = "https://www.youtube.com/watch?v="
 								+ videoId;
-						console.log(url);
-
-						if(++i > 5)	break;
+						//console.log(url);
+						
+						obj.title = title;
+						obj.description = description;
+						obj.thumbnail = thumbnail;
+						obj.url = url;
+						obj.ref = "youtube";
+						listadd.push(obj);
 					}
 				}
 			});
@@ -107,21 +113,24 @@
 				async : false,
 				success : function(res) {
 					var documents = res.documents;
-					for ( var i in documents) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = documents[i].title;
-						console.log(title);
-						
+						//console.log(title);
 						var thumbnail = documents[i].thumbnail;
-						console.log(thumbnail);
-						
+						//console.log(thumbnail);
 						var url = documents[i].url;
-						console.log(url);
-						
+						//console.log(url);
 						var datetime = documents[i].datetime;
-						console.log(datetime);
+						//console.log(datetime);
 						
-						if(++i > 5)	break;
-						
+						obj.title = title;
+						obj.description = null; // content = '';
+						obj.thumbnail = thumbnail;
+						obj.url = url;
+						obj.ref = "kakao";
+						listadd.push(obj);
 					}
 				}
 			});
@@ -137,26 +146,28 @@
 				async : false,
 				success : function(res) {
 					var documents = res.documents;
-					for ( var i in documents) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = documents[i].title;
-						console.log(title);
-						
-						var contents = documents[i].contents;
-						console.log(contents);
-						
+						//console.log(title);
+						var description = documents[i].contents;
+						//console.log(contents);
 						var thumbnail = documents[i].thumbnail;
-						console.log(thumbnail);
-						
+						//console.log(thumbnail);
 						var url = documents[i].url;
-						console.log(url);
-						
+						//console.log(url);
 						var datetime = documents[i].datetime;
 						//console.log(datetime);
 						var blogname = documents[i].blogname;
 						//console.log(blogname);
 						
-						if(++i > 5)	break;
-						
+						obj.title = title;
+						obj.description = description; // content = '';
+						obj.thumbnail = thumbnail;
+						obj.url = url;
+						obj.ref = "kakao";
+						listadd.push(obj);
 					}
 				}
 			});
@@ -174,15 +185,22 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i in items) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = items[i].title;
-						console.log(title);
-						
-						var link = items[i].link;
-						console.log(link);
-						
+						//console.log(title);
+						var url = items[i].link;
+						//console.log(link);
 						var description = items[i].description;
-						console.log(description);
+						//console.log(description);
+						
+						obj.title = title;
+						obj.description = description; // content = '';
+						obj.thumbnail = null;
+						obj.url = url;
+						obj.ref = "naver";
+						listadd.push(obj);
 					}
 				}
 			});
@@ -200,15 +218,22 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i in items) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = items[i].title;
-						console.log(title);
-						
-						var link = items[i].link;
-						console.log(link);
-						
+						//console.log(title);
+						var url = items[i].link;
+						//console.log(link);
 						var description = items[i].description;
-						console.log(description);
+						//console.log(description);
+						
+						obj.title = title;
+						obj.description = description; // content = '';
+						obj.thumbnail = null;
+						obj.url = url;
+						obj.ref = "naver";
+						listadd.push(obj);
 					}
 				}
 			});
@@ -226,21 +251,51 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i in items) {
+					for ( var i = 0; i<5; i++ ) {
+						var obj = {};
+						
 						var title = items[i].title;
-						console.log(title);
-						
-						var link = items[i].link;
-						console.log(link);
-						
+						//console.log(title);
+						var url = items[i].link;
+						//console.log(link);
 						var description = items[i].description;
-						console.log(description);
+						//console.log(description);
+						
+						obj.title = title;
+						obj.description = description; // content = '';
+						obj.thumbnail = null;
+						obj.url = url;
+						obj.ref = "naver";
+						listadd.push(obj);
 					}
 				}
 			});
 			
 			console.log('=======================================');
 
+			var html = '';
+			for(var i in listadd) {
+//	 			console.log(listadd[i].title);
+	 			html += '<div class="col-lg-4 col-md-6 mb-4">';
+	 			html += '<div class="card h-100">';
+	 			html += '<a href="' + listadd[i].url + '" target="_blank">';
+	 			html += '<img class="card-img-top" src="' + listadd[i].thumbnail + '" alt=""></a>';
+	 			html += '<div class="card-body">';
+	 			html += '<h5 class="card-title">'+ listadd[i].title + '</h5>';
+	 				 			
+	 			if(listadd[i].description != null) {
+	 				html += '<p class="card-text">' + listadd[i].description + '</p></div>';
+	 			}else{
+	 				html += '<p class="card-text"></p></div>';
+	 			}
+	 					
+	 			
+	 			html += '<div class="card-footer">'
+	 			html += '<small class="text-muted">'
+	 			html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small></div></div></div>';
+			}
+			
+			$('#view > .row').html(html);
 		});
 	</script>
 </html>
