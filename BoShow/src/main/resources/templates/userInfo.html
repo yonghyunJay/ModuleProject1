@@ -15,38 +15,50 @@
 
 				<h1 class="my-4">Setting</h1>
 				<div class="list-group">
-					<a href="/setting" class="list-group-item">Keyword</a>
-					<a href="/userInfo"	class="list-group-item active">User</a>
+					<a href="/setting" class="list-group-item">Keyword</a> <a
+						href="/userInfo" class="list-group-item active">User</a>
 				</div>
 
 			</div>
 			<!-- /.col-lg-3 -->
 
 			<div class="col-lg-9">
+				<form method="post" action="/userInfo">
+					<div class="row">
 
-				<div class="row">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100">
+								<div class="card-body">
+									<h4 class="card-title">User Info.</h4>
 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<div class="card-body">
-								<h4 class="card-title">
-									User Info.
-								</h4>
-								
-								<p> Name <input type="text" name="name" /></p>
-								<p> E-mail <input type="text" name="email" /></p>
-								<p> New Password <input type="password" name="newpwd" /></p>
-								<p> Old Password <input type="password" name="oldpwd" /></p>
+									<p>
+										Name <input type="text" name="name" autocomplete="off" />
+									</p>
+									<p>
+										E-mail <input type="text" name="email" autocomplete="false" />
+									</p>
+									<p>
+										New Password <input type="password" name="pwd" id="pwd"
+											autocomplete="new-password">
+									</p>
+									<p>
+										Confirm Password <input type="password" name="pwd2" id="pwd2"
+											autocomplete="off">
+									</p>
+									<p>
+										Old Password <input type="password" name="oldpwd" id="oldpwd"
+											autocomplete="off">
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div class="col-lg-4 col-md-6 mb-4">
-						<button>SAVE</button>
-					</div>
 
-				</div>
-				<!-- /.row -->
+						<div>
+							<button class="btn btn-danger btn-inline" id="save">SAVE</button>
+						</div>
+					</div>
+					<!-- /.row -->
+				</form>
 
 			</div>
 			<!-- /.col-lg-9 -->
@@ -59,16 +71,33 @@
 
 	<!-- Footer -->
 	<footer th:replace="common/footer"></footer>
-	
+
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script>
-		window.onload = function(){
-			$("input[name='name']").attr('value', '[[${session.user_info.name}]]');
-			$("input[name='email']").attr('value', '[[${session.user_info.email}]]');
+		window.onload = function() {
+			$("input[name='name']").attr('value',
+					'[[${session.user_info.name}]]');
+			$("input[name='email']").attr('value',
+					'[[${session.user_info.email}]]');
 		};
-		
-		$('button').click(function() {			
-			$("form").submit();
+
+		$('button').click(function() {
+			if ($('#oldpwd').val() == $('#pwd').val()) {
+				alert("이전에 입력한 비밀번호와 동일합니다.");
+
+			} else if ($('#pwd').val() != $('#pwd2').val()) {
+				alert("입력한 2개의 비밀번호가 서로 다릅니다.");
+
+			} else {
+				if($('#oldpwd').val() == [[${session.user_info.pwd}]]) {
+					$("form").submit();
+					alert("변경되었습니다. 다시 로그인 해주세요.");
+				} else {
+					alert("기존 비밀번로를 다시 확인해주세요.");
+				}
+				
+			}
+			return false;
 		});
 	</script>
 </html>

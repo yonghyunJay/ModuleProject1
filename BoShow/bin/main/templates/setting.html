@@ -23,15 +23,15 @@
 			<!-- /.col-lg-3 -->
 
 			<div class="col-lg-9">
+				<form method="post" action="/setting">
+					<div class="row">
 
-				<div class="row">
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100">
+								<div class="card-body">
+									<h4 class="card-title">Keyword</h4>
 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<div class="card-body">
-								<h4 class="card-title">Keyword</h4>
 
-								<form method="post" action="/setting">
 									<p>
 										Keyword 1 <input type="text" name="keyword1" id="keyword1">
 									</p>
@@ -47,42 +47,41 @@
 									<p>
 										Keyword 5 <input type="text" name="keyword5" id="keyword5" />
 									</p>
-									<button class="btn btn-danger btn-inline" id="save">SAVE</button>
-								</form>
+
+
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<div class="card-body">
-								<h4 class="card-title">Resource</h4>
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100">
+								<div class="card-body">
+									<h4 class="card-title">Resource</h4>
 
-								<label> <input
-									th:if="${session.user_info.typeYoutubeEn} != ture"
-									type="checkbox" name="resource1" value="typeYoutube"> <input
-									th:if="${session.user_info.typeYoutubeEn} == ture"
-									type="checkbox" name="resource1" value="typeYoutube" checked>
-									Youtube
-								</label> <br> <label> <input
-									th:if="${session.user_info.typeKakaoVideoEn} != ture"
-									type="checkbox" name="resource1" value="typeKaVideo"> <input
-									th:if="${session.user_info.typeKakaoVideoEn} == ture"
-									type="checkbox" name="resource1" value="typeKaVideo" checked>
-									Kakao Video
-								</label> <br> <label> <input
-									th:if="${session.user_info.typeKakaoBlogEn} != ture"
-									type="checkbox" name="resource1" value="typeKaBlog"> <input
-									th:if="${session.user_info.typeKakaoBlogEn} == ture"
-									type="checkbox" name="resource1" value="typeKaBlog" checked>
-									Kakao Blog
-								</label> <br>
+									<label><input type="checkbox" name="typeYoutubeEn"
+										id="Youtube" value="1">Youtube </label>
+									</p>
+									<p>
+										<label> <input type="checkbox" name="typeKakaoVideoEn"
+											id="Kakao Video" value="1">Kakao Video
+										</label>
+									</p>
+									<p>
+										<label><input type="checkbox" name="typeKakaoBlogEn"
+											id="Kakao Blog" value="1">Kakao Blog </label>
+									</p>
+
+								</div>
 							</div>
 						</div>
-					</div>
 
-				</div>
-				<!-- /.row -->
+						<div>
+							<button class="btn btn-danger btn-inline" id="save">SAVE</button>
+						</div>
+
+					</div>
+					<!-- /.row -->
+				</form>
 
 			</div>
 			<!-- /.col-lg-9 -->
@@ -100,34 +99,26 @@
 	<script>
 		window.onload = function() {
 			$("input[name='keyword1']").attr('value',
-					'[[${session.user_info.keyword1}]]');
+			      '[[${session.user_info.keyword1}]]');
 			$("input[name='keyword2']").attr('value',
-					'[[${session.user_info.keyword2}]]');
+			      '[[${session.user_info.keyword2}]]');
 			$("input[name='keyword3']").attr('value',
-					'[[${session.user_info.keyword3}]]');
+			      '[[${session.user_info.keyword3}]]');
 			$("input[name='keyword4']").attr('value',
-					'[[${session.user_info.keyword4}]]');
+			      '[[${session.user_info.keyword4}]]');
 			$("input[name='keyword5']").attr('value',
-					'[[${session.user_info.keyword5}]]');
+			      '[[${session.user_info.keyword5}]]');
+			if ([[${session.user_info.typeYoutubeEn}]]==true){
+			   $("input[id='Youtube']").attr("checked", true)};
+			if ([[${session.user_info.typeKakaoVideoEn}]]==true){
+			   $("input[id='Kakao Video']").attr("checked", true)};
+			if ([[${session.user_info.typeKakaoBlogEn}]]==true){
+			   $("input[id='Kakao Blog']").attr("checked", true)};
 		};
-
-		// 		$('button').click(function() {			
-		// 			console.log($("input[name='keyword1']").val());
-		// 			console.log($("input[name='keyword2']").val());
-		// 			console.log($("input[name='keyword3']").val());
-		// 			console.log($("input[name='keyword4']").val());
-		// 			console.log($("input[name='keyword5']").val());
-
-		// 			console.log($("input:checkbox[name='resource1']").is(":checked"));
-		// 			console.log($("input:checkbox[name='resource2']").is(":checked"));
-		// 			console.log($("input:checkbox[name='resource3']").is(":checked"));
-
-		// 			$("form").submit();
-		// 		});
-
+		
 		$('#save').click(function() {
 			$("form").submit();
 			return false;
 		});
-	</script>
+   </script>
 </html>

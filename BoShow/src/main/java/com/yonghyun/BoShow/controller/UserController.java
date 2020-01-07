@@ -75,4 +75,31 @@ public class UserController {
 	public String userInfo() {
 		return "userInfo";
 	}
+
+	@PostMapping("/userInfo")
+	public String userInfoPost(@ModelAttribute User user) {
+		User sessionUser = (User) session.getAttribute("user_info");
+		long id = sessionUser.getId();
+		String keyword1 = sessionUser.getKeyword1();
+		String keyword2 = sessionUser.getKeyword2();
+		String keyword3 = sessionUser.getKeyword3();
+		String keyword4 = sessionUser.getKeyword4();
+		String keyword5 = sessionUser.getKeyword5();
+		int typeYoutubeEn = sessionUser.getTypeYoutubeEn();
+		int typeKakaoBlogEn = sessionUser.getTypeKakaoBlogEn();
+		int typeKakaoVideoEn = sessionUser.getTypeKakaoVideoEn();
+
+		user.setId(id);
+		user.setKeyword1(keyword1);
+		user.setKeyword2(keyword2);
+		user.setKeyword3(keyword3);
+		user.setKeyword4(keyword4);
+		user.setKeyword5(keyword5);
+		user.setTypeYoutubeEn(typeYoutubeEn);
+		user.setTypeKakaoBlogEn(typeKakaoBlogEn);
+		user.setTypeKakaoVideoEn(typeKakaoVideoEn);
+		session.setAttribute("user_info", user);
+		userRepository.save(user);
+		return "userInfo";
+	}
 }

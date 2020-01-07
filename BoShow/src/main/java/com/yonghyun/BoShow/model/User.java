@@ -21,11 +21,11 @@ public class User {
 	private String keyword3;
 	private String keyword4;
 	private String keyword5;
-	private boolean typeGoogleNewsEn;
-	private boolean typeYoutubeEn;
-	private boolean typeNaverNewsEn;
-	private boolean typeNaverBlogEn;
-	private boolean typeKakaoNewsEn;
-	private boolean typeKakaoBlogEn;
-	private boolean typeKakaoVideoEn;
+	private int typeGoogleNewsEn;
+	private int typeYoutubeEn;
+	private int typeNaverNewsEn;
+	private int typeNaverBlogEn;
+	private int typeKakaoNewsEn;
+	private int typeKakaoBlogEn;
+	private int typeKakaoVideoEn;
 }

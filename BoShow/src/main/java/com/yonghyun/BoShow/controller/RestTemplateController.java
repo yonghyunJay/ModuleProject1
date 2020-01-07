@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.RequestEntity;
@@ -49,6 +50,25 @@ public class RestTemplateController {
 			requestEntity = RequestEntity
 					.get(new URI("https://dapi.kakao.com/v2/search/blog?query=" + URLEncoder.encode(blogTopic, "utf-8")))
 					.header("Authorization", "KakaoAK 7e6ebaf4ae41d1259b2ab492fc603254").build();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+		return entity;
+	}
+	
+	@GetMapping("getNaverNews")
+	public ResponseEntity<Map> NaverNews(@RequestParam("newsTopic") String newsTopic) {
+		RestTemplate rt = new RestTemplate();
+		RequestEntity requestEntity = null;
+		try {
+			requestEntity = RequestEntity
+					.get(new URI("https://openapi.naver.com/v1/search/news.json?query=" + URLEncoder.encode(newsTopic, "utf-8") + "&display=10&start=1&sort=date"))
+					.header("X-Naver-Client-Id", "qr8aO6sp0ZP0MGulKewr")
+					.header("X-Naver-Client-Secret", "X_K29MjpIP")
+					.build();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
