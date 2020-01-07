@@ -58,6 +58,13 @@
 			console.log(this.id);
 			var selId = '#'+ this.id;
 			
+			$("#item1").removeClass("active");
+			$("#item2").removeClass("active");
+			$("#item3").removeClass("active");
+			$("#item4").removeClass("active");
+			$("#item5").removeClass("active");
+			$(selId).addClass("active");
+			
 			$.ajax({
 				url : '/getYoutube',
 				type : 'get',
