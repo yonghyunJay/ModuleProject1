@@ -35,7 +35,7 @@
 				<div class="row">
 
 					<contents th:replace="contents"></contents>
-					
+
 				</div>
 				<!-- /.row -->
 
@@ -50,15 +50,37 @@
 
 	<!-- Footer -->
 	<footer th:replace="common/footer"></footer>
-	
+
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 	<script>
+		function shuffle(array) {
+			let counter = array.length;
+
+			// While there are elements in the array
+			while (counter > 0) {
+				// Pick a random index
+				let index = Math.floor(Math.random() * counter);
+
+				// Decrease counter by 1
+				counter--;
+
+				// And swap the last element with it
+				let temp = array[counter];
+				array[counter] = array[index];
+				array[index] = temp;
+			}
+
+			return array;
+		}
+
 		$('.list-group-item').click(function() {
+
 			var listadd = [];
-			
+
 			//console.log(this.id);
-			var selId = '#'+ this.id;
+			
+			var selId = '#' + this.id;
 			
 			$("#item1").removeClass("active");
 			$("#item2").removeClass("active");
@@ -66,7 +88,7 @@
 			$("#item4").removeClass("active");
 			$("#item5").removeClass("active");
 			$(selId).addClass("active");
-			
+
 			$.ajax({
 				url : '/getYoutube',
 				type : 'get',
@@ -76,9 +98,9 @@
 				async : false,
 				success : function(res) {
 					var items = res.items;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = items[i].snippet.title;
 						//console.log(title);
 						var description = items[i].snippet.description;
@@ -91,7 +113,7 @@
 						var url = "https://www.youtube.com/watch?v="
 								+ videoId;
 						//console.log(url);
-						
+
 						obj.title = title;
 						obj.description = description;
 						obj.thumbnail = thumbnail;
@@ -101,9 +123,9 @@
 					}
 				}
 			});
-			
+
 			console.log("------------------------------------");
-			
+
 			$.ajax({
 				url : '/getKakaoVideo',
 				type : 'get',
@@ -113,9 +135,9 @@
 				async : false,
 				success : function(res) {
 					var documents = res.documents;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = documents[i].title;
 						//console.log(title);
 						var thumbnail = documents[i].thumbnail;
@@ -124,7 +146,7 @@
 						//console.log(url);
 						var datetime = documents[i].datetime;
 						//console.log(datetime);
-						
+
 						obj.title = title;
 						obj.description = null; // content = '';
 						obj.thumbnail = thumbnail;
@@ -134,9 +156,9 @@
 					}
 				}
 			});
-			
+
 			console.log("------------------------------------");
-			
+
 			$.ajax({
 				url : '/getKakaoBlog',
 				type : 'get',
@@ -146,9 +168,9 @@
 				async : false,
 				success : function(res) {
 					var documents = res.documents;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = documents[i].title;
 						//console.log(title);
 						var description = documents[i].contents;
@@ -161,7 +183,7 @@
 						//console.log(datetime);
 						var blogname = documents[i].blogname;
 						//console.log(blogname);
-						
+
 						obj.title = title;
 						obj.description = description; // content = '';
 						obj.thumbnail = thumbnail;
@@ -171,9 +193,9 @@
 					}
 				}
 			});
-			
+
 			console.log("------------------------------------");
-			
+
 			$.ajax({
 				url : '/getNaverNews',
 				type : 'get',
@@ -185,16 +207,16 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = items[i].title;
 						//console.log(title);
 						var url = items[i].link;
 						//console.log(link);
 						var description = items[i].description;
 						//console.log(description);
-						
+
 						obj.title = title;
 						obj.description = description; // content = '';
 						obj.thumbnail = null;
@@ -204,9 +226,9 @@
 					}
 				}
 			});
-			
+
 			console.log("------------------------------------");
-			
+
 			$.ajax({
 				url : '/getNaverBlog',
 				type : 'get',
@@ -218,16 +240,16 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = items[i].title;
 						//console.log(title);
 						var url = items[i].link;
 						//console.log(link);
 						var description = items[i].description;
 						//console.log(description);
-						
+
 						obj.title = title;
 						obj.description = description; // content = '';
 						obj.thumbnail = null;
@@ -237,9 +259,9 @@
 					}
 				}
 			});
-			
+
 			console.log("------------------------------------");
-			
+
 			$.ajax({
 				url : '/getNaverCafe',
 				type : 'get',
@@ -251,16 +273,16 @@
 					console.log($(selId).text());
 					console.log(res);
 					var items = res.items;
-					for ( var i = 0; i<5; i++ ) {
+					for (var i = 0; i < 5; i++) {
 						var obj = {};
-						
+
 						var title = items[i].title;
 						//console.log(title);
 						var url = items[i].link;
 						//console.log(link);
 						var description = items[i].description;
 						//console.log(description);
-						
+
 						obj.title = title;
 						obj.description = description; // content = '';
 						obj.thumbnail = null;
@@ -270,35 +292,40 @@
 					}
 				}
 			});
-			
+
 			console.log('=======================================');
 
+			shuffle(listadd);
+
 			var html = '';
-			for(var i in listadd) {
-//	 			console.log(listadd[i].title);
-	 			html += '<div class="col-lg-4 col-md-6 mb-4">';
-	 			html += '<div class="card h-100">';
-	 			html += '<a href="' + listadd[i].url + '" target="_blank">';
-	 			
-	 			if(listadd[i].thumbnail != null) {
-	 				html += '<img class="card-img-top" src="' + listadd[i].thumbnail + '" alt="">';	
-	 			}
-	 			
-	 			html += '</a><div class="card-body">';
-	 			html += '<h5 class="card-title">'+ listadd[i].title + '</h5>';
-	 				 			
-	 			if(listadd[i].description != null) {
-	 				html += '<p class="card-text">' + listadd[i].description + '</p></div>';
-	 			}else{
-	 				html += '<p class="card-text"></p></div>';
-	 			}
-	 					
-	 			
-	 			html += '<div class="card-footer">'
-	 			html += '<small class="text-muted">'
-	 			html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small></div></div></div>';
+
+			for ( var i in listadd) {
+				//console.log(listadd[i].title);
+				html += '<div class="col-lg-4 col-md-6 mb-4">';
+				html += '<div class="card h-100">';
+				html += '<a href="' + listadd[i].url + '" target="_blank">';
+
+				if (listadd[i].thumbnail != null) {
+					html += '<img class="card-img-top" src="' + listadd[i].thumbnail + '" alt="">';
+				}
+
+				html += '</a><div class="card-body">';
+				html += '<h5 class="card-title">'
+						+ listadd[i].title + '</h5>';
+
+				if (listadd[i].description != null) {
+					html += '<p class="card-text">'
+							+ listadd[i].description
+							+ '</p></div>';
+				} else {
+					html += '<p class="card-text"></p></div>';
+				}
+
+				html += '<div class="card-footer">'
+				html += '<small class="text-muted">'
+				html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small></div></div></div>';
 			}
-			
+
 			$('#view > .row').html(html);
 		});
 	</script>
