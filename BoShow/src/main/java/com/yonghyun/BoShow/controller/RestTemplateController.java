@@ -1,11 +1,16 @@
 package com.yonghyun.BoShow.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -60,12 +65,12 @@ public class RestTemplateController {
 	}
 	
 	@GetMapping("getNaverNews")
-	public ResponseEntity<Map> NaverNews(@RequestParam("newsTopic") String newsTopic) {
+	public Map NaverNews(@RequestParam("naverNewsTopic") String naverNewsTopic) {
 		RestTemplate rt = new RestTemplate();
 		RequestEntity requestEntity = null;
 		try {
 			requestEntity = RequestEntity
-					.get(new URI("https://openapi.naver.com/v1/search/news.json?query=" + URLEncoder.encode(newsTopic, "utf-8") + "&display=10&start=1&sort=date"))
+					.get(new URI("https://openapi.naver.com/v1/search/news.json?query=" + URLEncoder.encode(naverNewsTopic, "utf-8") + "&total=5&display=10&start=1&sort=date"))
 					.header("X-Naver-Client-Id", "qr8aO6sp0ZP0MGulKewr")
 					.header("X-Naver-Client-Secret", "X_K29MjpIP")
 					.build();
@@ -75,6 +80,45 @@ public class RestTemplateController {
 			e.printStackTrace();
 		}
 		ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
-		return entity;
+		return entity.getBody();
 	}
+	
+	@GetMapping("getNaverBlog")
+	public Map NaverBlog(@RequestParam("naverBlogTopic") String naverBlogTopic) {
+		RestTemplate rt = new RestTemplate();
+		RequestEntity requestEntity = null;
+		try {
+			requestEntity = RequestEntity
+					.get(new URI("https://openapi.naver.com/v1/search/blog.json?query=" + URLEncoder.encode(naverBlogTopic, "utf-8") + "&total=5&display=10&start=1&sort=date"))
+					.header("X-Naver-Client-Id", "qr8aO6sp0ZP0MGulKewr")
+					.header("X-Naver-Client-Secret", "X_K29MjpIP")
+					.build();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+		return entity.getBody();
+	}
+	
+	@GetMapping("getNaverCafe")
+	public Map NaverCafe(@RequestParam("naverCafe") String naverCafe) {
+		RestTemplate rt = new RestTemplate();
+		RequestEntity requestEntity = null;
+		try {
+			requestEntity = RequestEntity
+					.get(new URI("https://openapi.naver.com/v1/search/cafearticle.json?query=" + URLEncoder.encode(naverCafe, "utf-8") + "&total=5&display=10&start=1&sort=date"))
+					.header("X-Naver-Client-Id", "qr8aO6sp0ZP0MGulKewr")
+					.header("X-Naver-Client-Secret", "X_K29MjpIP")
+					.build();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+		return entity.getBody();
+	}
+	
 }

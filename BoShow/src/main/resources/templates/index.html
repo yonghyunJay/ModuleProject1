@@ -55,48 +55,39 @@
 
 	<script>
 		$('.list-group-item').click(function() {
-			var content = {
-			        title : '',
-			        description : '',
-			        thumbnails : '',
-			        url : ''
-				};
-			
-			var dataSet = new Array();
-
 			console.log(this.id);
 			var selId = '#'+ this.id;
 			
-// 			$.ajax({
-// 				url : '/getYoutube',
-// 				type : 'get',
-// 				data : {
-// 					'youtubeTopic' : $(selId).text()
-// 				},
-// 				async : false,
-// 				success : function(res) {
-// 					var items = res.items;
-// 					for ( var i in items) {
-// 						var title = items[i].snippet.title;
-// 						console.log(title);
+			$.ajax({
+				url : '/getYoutube',
+				type : 'get',
+				data : {
+					'youtubeTopic' : $(selId).text()
+				},
+				async : false,
+				success : function(res) {
+					var items = res.items;
+					for ( var i in items) {
+						var title = items[i].snippet.title;
+						console.log(title);
 																		
-// 						var description = items[i].snippet.description;
-// 						console.log(description);
+						var description = items[i].snippet.description;
+						console.log(description);
 						
-// 						var thumbnails = items[i].snippet.thumbnails.medium.url;
-// 						console.log(thumbnails);
+						var thumbnails = items[i].snippet.thumbnails.medium.url;
+						console.log(thumbnails);
 						
-// 						var datetime = items[i].snippet.publishedAt;
-// 						console.log(datetime);
-// 						var videoId = items[i].id.videoId;
-// 						var url = "https://www.youtube.com/watch?v="
-// 								+ videoId;
-// 						console.log(url);
+						var datetime = items[i].snippet.publishedAt;
+						console.log(datetime);
+						var videoId = items[i].id.videoId;
+						var url = "https://www.youtube.com/watch?v="
+								+ videoId;
+						console.log(url);
 
-// 						if(++i > 5)	break;
-// 					}
-// 				}
-// 			});
+						if(++i > 5)	break;
+					}
+				}
+			});
 			
 			console.log("------------------------------------");
 			
@@ -161,21 +152,85 @@
 						
 					}
 				}
-			})
+			});
 			
-// 			console.log("------------------------------------");
+			console.log("------------------------------------");
 			
-// 			$.ajax({
-// 				url : '/getNaverNews',
-// 				type : 'get',
-// 				data : {
-// 					'newsTopic' : $(selId).text()
-// 				},
-// 				async : false,
-// 				success : function(res) {
-// 					console.log(res);
-// 				}
-// 			})
+			$.ajax({
+				url : '/getNaverNews',
+				type : 'get',
+				data : {
+					'naverNewsTopic' : $(selId).text()
+				},
+				async : false,
+				success : function(res) {
+					console.log($(selId).text());
+					console.log(res);
+					var items = res.items;
+					for ( var i in items) {
+						var title = items[i].title;
+						console.log(title);
+						
+						var link = items[i].link;
+						console.log(link);
+						
+						var description = items[i].description;
+						console.log(description);
+					}
+				}
+			});
+			
+			console.log("------------------------------------");
+			
+			$.ajax({
+				url : '/getNaverBlog',
+				type : 'get',
+				data : {
+					'naverBlogTopic' : $(selId).text()
+				},
+				async : false,
+				success : function(res) {
+					console.log($(selId).text());
+					console.log(res);
+					var items = res.items;
+					for ( var i in items) {
+						var title = items[i].title;
+						console.log(title);
+						
+						var link = items[i].link;
+						console.log(link);
+						
+						var description = items[i].description;
+						console.log(description);
+					}
+				}
+			});
+			
+			console.log("------------------------------------");
+			
+			$.ajax({
+				url : '/getNaverCafe',
+				type : 'get',
+				data : {
+					'naverCafe' : $(selId).text()
+				},
+				async : false,
+				success : function(res) {
+					console.log($(selId).text());
+					console.log(res);
+					var items = res.items;
+					for ( var i in items) {
+						var title = items[i].title;
+						console.log(title);
+						
+						var link = items[i].link;
+						console.log(link);
+						
+						var description = items[i].description;
+						console.log(description);
+					}
+				}
+			});
 			
 			console.log('=======================================');
 

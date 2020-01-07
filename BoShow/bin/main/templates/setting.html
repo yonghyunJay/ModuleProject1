@@ -58,17 +58,35 @@
 								<div class="card-body">
 									<h4 class="card-title">Resource</h4>
 
-									<label><input type="checkbox" name="typeYoutubeEn"
-										id="Youtube" value="1">Youtube </label>
-									</p>
 									<p>
-										<label> <input type="checkbox" name="typeKakaoVideoEn"
-											id="Kakao Video" value="1">Kakao Video
+										<label> <input type="checkbox" name="typeYoutubeEn"
+											id="Youtube" value="1"> Youtube
 										</label>
 									</p>
 									<p>
-										<label><input type="checkbox" name="typeKakaoBlogEn"
-											id="Kakao Blog" value="1">Kakao Blog </label>
+										<label> <input type="checkbox" name="typeKakaoVideoEn"
+											id="KakaoVideo" value="1"> Kakao Video
+										</label>
+									</p>
+									<p>
+										<label> <input type="checkbox" name="typeKakaoBlogEn"
+											id="KakaoBlog" value="1"> Kakao Blog
+										</label>
+									</p>
+									<p>
+										<label> <input type="checkbox" name="typeNaverNewsEn"
+											id="NaverNews" value="1"> Naver News
+										</label>
+									</p>
+									<p>
+										<label> <input type="checkbox" name="typeNaverBlogEn"
+											id="NaverBlog" value="1"> Naver Blog
+										</label>
+									</p>
+									<p>
+										<label> <input type="checkbox" name="typeNaverCafeEn"
+											id="NaverCafe" value="1"> Naver Cafe
+										</label>
 									</p>
 
 								</div>
@@ -111,9 +129,15 @@
 			if ([[${session.user_info.typeYoutubeEn}]]==true){
 			   $("input[id='Youtube']").attr("checked", true)};
 			if ([[${session.user_info.typeKakaoVideoEn}]]==true){
-			   $("input[id='Kakao Video']").attr("checked", true)};
+			   $("input[id='KakaoVideo']").attr("checked", true)};
 			if ([[${session.user_info.typeKakaoBlogEn}]]==true){
-			   $("input[id='Kakao Blog']").attr("checked", true)};
+			   $("input[id='KakaoBlog']").attr("checked", true)};
+			if ([[${session.user_info.typeNaverNewsEn}]]==true){
+			   $("input[id='NaverNews']").attr("checked", true)};
+			if ([[${session.user_info.typeNaverBlogEn}]]==true){
+			   $("input[id='NaverBlog']").attr("checked", true)};
+			if ([[${session.user_info.typeNaverCafeEn}]]==true){
+				$("input[id='NaverCafe']").attr("checked", true)};
 		};
 		
 		$('#save').click(function() {

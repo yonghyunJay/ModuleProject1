@@ -25,6 +25,7 @@ public class User {
 	private int typeYoutubeEn;
 	private int typeNaverNewsEn;
 	private int typeNaverBlogEn;
+	private int typeNaverCafeEn;
 	private int typeKakaoNewsEn;
 	private int typeKakaoBlogEn;
 	private int typeKakaoVideoEn;
