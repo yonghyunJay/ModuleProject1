@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head">
+</head>
+<body>
+	<nav th:replace="common/nav"></nav>
+
+	<section class="login-form" style="text-align: center;">
+		<div class="container text-center">
+<!-- 			<h1 style= "font-size:60px">LOGIN</h1> -->
+			<img src="img/logo1.png" style="width:300px;padding-bottom:50px;">
+			<form method="post" action="/signin">
+				<div class="int-area" style="margin: 0 auto;">
+					<input type="text" name="email" id="email" autocomplete="off" required>
+					<label for="email">USER NAME</label>
+				</div>
+				<div class="int-area" style="margin: 0 auto;">
+					<input type="password" name="pwd" id="pwd" autocomplete="off" required>
+					<label for="pwd">PASSWORD</label>
+				</div>
+				<div class="btn-area">
+					<button id="btn" type="submit" style="width: 360px;">SIGN IN</button>
+				</div>
+				<div class="btn-area2">
+					<button id="btn" type="submit" style="width: 360px;">SIGN UP</button>
+				</div>
+<!-- 				<div class="caption"> -->
+<!-- 					<a href="">Forgot password?</a> -->
+<!-- 				</div> -->
+			</form>
+		</div>
+
+	</section>
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		let id = $('#id');
+		let pw = $('#pw');
+		let btn = $('#btn');
+
+		$("#signin").click(function() {
+			if ($(id).val() == "") {
+				$(id).next('label').addClass('warning');
+				setTimeout(function() {
+					$('label').removeClass('warning');
+				}, 1500);
+			} else if ($(pw).val() == "") {
+				$(pw).next('label').addClass('warning');
+				setTimeout(function() {
+					$('label').removeClass('warning');
+				}, 1500);
+			} else {
+				$("form").submit();
+				return false;
+			}
+		});
+
+		$("#signup").click(function() {
+			location = "/signup";
+			return false;
+		});
+	</script>
+</body>
+</html>

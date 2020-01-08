@@ -10,13 +10,6 @@ import com.yonghyun.BoShow.model.User;
 public class HomeController {
 	@GetMapping({ "/", "/home" })
 	public String index() {
-		
-//		Data d = new Data();
-//		User user = new User();
-//		d.setUser(user);
-		
-		
-		
-		return "index";
+		return "login";
 	}
 }

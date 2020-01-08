@@ -13,6 +13,11 @@ import com.yonghyun.BoShow.repository.UserRepository;
 
 @Controller
 public class UserController {
+	@GetMapping("/index")
+	public String index() {
+		return "index";
+	}
+	
 	@Autowired
 	UserRepository userRepository;
 
@@ -40,6 +45,7 @@ public class UserController {
 		User dbUser = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
 		if (dbUser != null) {
 			session.setAttribute("user_info", dbUser);
+			return "redirect:/index";
 		}
 		return "redirect:/";
 	}
