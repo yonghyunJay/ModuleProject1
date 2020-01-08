@@ -103,4 +103,10 @@ public class UserController {
 		userRepository.save(user);
 		return "userInfo";
 	}
+	
+	@GetMapping("/about")
+	public String about() {
+		
+		return "about";
+	}
 }
