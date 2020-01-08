@@ -16,15 +16,15 @@
 				<h1 class="my-4">Key words</h1>
 				<div class="list-group" th:if="${session.user_info} != null">
 					<a href="#" class="list-group-item active" id="item1"
-						th:if="${session.user_info.keyword1} != null">[[${session.user_info.keyword1}]]</a>
+						th:if="${session.user_info.keyword1} != ''">[[${session.user_info.keyword1}]]</a>
 					<a href="#" class="list-group-item" id="item2"
-						th:if="${session.user_info.keyword2} != null">[[${session.user_info.keyword2}]]</a>
+						th:if="${session.user_info.keyword2} != ''">[[${session.user_info.keyword2}]]</a>
 					<a href="#" class="list-group-item" id="item3"
-						th:if="${session.user_info.keyword3} != null">[[${session.user_info.keyword3}]]</a>
+						th:if="${session.user_info.keyword3} != ''">[[${session.user_info.keyword3}]]</a>
 					<a href="#" class="list-group-item" id="item4"
-						th:if="${session.user_info.keyword4} != null">[[${session.user_info.keyword4}]]</a>
+						th:if="${session.user_info.keyword4} != ''">[[${session.user_info.keyword4}]]</a>
 					<a href="#" class="list-group-item" id="item5"
-						th:if="${session.user_info.keyword5} != null">[[${session.user_info.keyword5}]]</a>
+						th:if="${session.user_info.keyword5} != ''">[[${session.user_info.keyword5}]]</a>
 					
 					<input type="hidden" name="typeYoutubeEn" th:value="${session.user_info.typeYoutubeEn}" th:if="${session.user_info.id} != null"></input>
 					<input type="hidden" name="typeNaverNewsEn" th:value="${session.user_info.typeNaverNewsEn}" th:if="${session.user_info.id} != null"></input>
