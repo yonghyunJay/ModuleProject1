@@ -10,16 +10,14 @@ body{
     font-family: 'Gamja Flower', cursive;
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
+
     height: 82vh;
     background-image: url('../img/bg.png');
     background-position: center;
     background-size: cover;
-    padding-top: 128rem;
-}
+    padding-top: 4rem;
 
-.row {
-	padding-bottom: 4rem;
 }
 
 /* body::before { */
@@ -28,6 +26,10 @@ body{
 /*     top: 0; right: 0; bottom: 0; left: 0; */
 /*     background-color: rgba(0, 0, 0, .7); */
 /* } */
+
+.row {
+	padding-bottom: 4rem;
+}
 
 .login-form {position: relative; z-index: 2;}
 .login-form h1 {
