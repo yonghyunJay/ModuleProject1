@@ -12,9 +12,8 @@
 		<div class="row">
 
 			<div id="keyword" class="col-lg-3">
-
-				<h1 class="my-4">Key words</h1>
-				<div class="list-group" th:if="${session.user_info} != null">
+				<h1 class="my-4" style="position:fixed; margin-top: 0.5rem!important; color:#fff">Key words</h1>
+				<div class="list-group" th:if="${session.user_info} != null" style="padding-top:63px; position:fixed;">
 					<a href="#" class="list-group-item active" id="item1"
 						th:if="${session.user_info.keyword1} != null">[[${session.user_info.keyword1}]]</a>
 					<a href="#" class="list-group-item" id="item2"
