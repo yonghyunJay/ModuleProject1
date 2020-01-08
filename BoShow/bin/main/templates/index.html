@@ -25,6 +25,7 @@
 						th:if="${session.user_info.keyword4} != ''">[[${session.user_info.keyword4}]]</a>
 					<a href="#" class="list-group-item" id="item5"
 						th:if="${session.user_info.keyword5} != ''">[[${session.user_info.keyword5}]]</a>
+					<a href="#" class="list-group-item" id="item0">즐겨찾기</a>
 					
 					<input type="hidden" name="typeYoutubeEn" th:value="${session.user_info.typeYoutubeEn}" th:if="${session.user_info.id} != null"></input>
 					<input type="hidden" name="typeNaverNewsEn" th:value="${session.user_info.typeNaverNewsEn}" th:if="${session.user_info.id} != null"></input>
@@ -79,9 +80,8 @@
 
 			return array;
 		}
-
+		var desListadd = [];
 		function keyword() {
-			var listadd = [];
 			var selId;
 			if(this.id != null){
 				selId = '#'+ this.id;
@@ -89,196 +89,227 @@
 				selId = '#item1';
 			}
 			
+			$("#item0").removeClass("active");
 			$("#item1").removeClass("active");
 			$("#item2").removeClass("active");
 			$("#item3").removeClass("active");
 			$("#item4").removeClass("active");
 			$("#item5").removeClass("active");
 			$(selId).addClass("active");
-
-			if($('input[name=typeYoutubeEn]').val() == 1) {
-				console.log('Enter getting youtube');
+			
+			if(this.id == 'item0') {
+				var listadd = [];
 				$.ajax({
-					url : '/getYoutube',
+					url : '/getCollect',
 					type : 'get',
 					data : {
-						'youtubeTopic' : $(selId).text()
 					},
 					async : false,
 					success : function(res) {
-						if(res != null) {
-							var items = res.items;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-// 								var datetime = items[i].snippet.publishedAt;
-								obj.title = items[i].snippet.title;
-								obj.description = items[i].snippet.description;
-								obj.thumbnail = items[i].snippet.thumbnails.medium.url;
-								obj.url = "https://www.youtube.com/watch?v=" + items[i].id.videoId;
-								obj.ref = "youtube";
-								listadd.push(obj);
-							}
+						var items = res;
+						for (var i in items) {
+							var obj = {};
+							obj.title = items[i].title;
+							obj.description = items[i].desc;
+							obj.thumbnail = items[i].thumb;
+							obj.url = items[i].link;
+							obj.ref = items[i].src;
+							listadd.push(obj);
 						}
 					}
 				});
+			} else {
+				var listadd = [];
+					
+				if($('input[name=typeYoutubeEn]').val() == 1) {
+					console.log('Enter getting youtube');
+					$.ajax({
+						url : '/getYoutube',
+						type : 'get',
+						data : {
+							'youtubeTopic' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var items = res.items;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+	// 								var datetime = items[i].snippet.publishedAt;
+									obj.title = items[i].snippet.title;
+									obj.description = items[i].snippet.description;
+									obj.thumbnail = items[i].snippet.thumbnails.medium.url;
+									obj.url = "https://www.youtube.com/watch?v=" + items[i].id.videoId;
+									obj.ref = "youtube";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+				
+				if($('input[name=typeKakaoVideoEn]').val() == 1) {
+					console.log('Enter getting KakaoVideo');
+					$.ajax({
+						url : '/getKakaoVideo',
+						type : 'get',
+						data : {
+							'videoTopic' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var documents = res.documents;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+	// 								var datetime = documents[i].datetime;		
+									obj.title = documents[i].title;
+									obj.description = null;
+									obj.thumbnail = documents[i].thumbnail;
+									obj.url = documents[i].url;
+									obj.ref = "kakao";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+							
+				if($('input[name=typeKakaoBlogEn]').val() == 1) {
+					console.log('Enter getting KakaoBlog');
+					$.ajax({
+						url : '/getKakaoBlog',
+						type : 'get',
+						data : {
+							'blogTopic' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var documents = res.documents;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+	// 								var datetime = documents[i].datetime;
+	// 								var blogname = documents[i].blogname;
+									obj.title = documents[i].title;
+									obj.description = documents[i].contents;
+									obj.thumbnail = documents[i].thumbnail;
+									obj.url = documents[i].url;
+									obj.ref = "kakao";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+				
+				
+				if($('input[name=typeNaverNewsEn]').val() == 1) {
+					console.log('Enter getting NaverNews');
+					$.ajax({
+						url : '/getNaverNews',
+						type : 'get',
+						data : {
+							'naverNewsTopic' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var items = res.items;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+									obj.title = items[i].title;
+									obj.description = items[i].description;
+									obj.thumbnail = null;
+									obj.url = items[i].link;
+									obj.ref = "naver";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+	
+				if($('input[name=typeNaverBlogEn]').val() == 1) {
+					console.log('Enter getting NaverBlog');
+					$.ajax({
+						url : '/getNaverBlog',
+						type : 'get',
+						data : {
+							'naverBlogTopic' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var items = res.items;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+									obj.title = items[i].title;
+									obj.description = items[i].description;
+									obj.thumbnail = null;
+									obj.url = items[i].link;
+									obj.ref = "naver";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+				
+				if($('input[name=typeNaverCafeEn]').val() == 1) {
+					console.log('Enter getting NaverCafe');
+					$.ajax({
+						url : '/getNaverCafe',
+						type : 'get',
+						data : {
+							'naverCafe' : $(selId).text()
+						},
+						async : false,
+						success : function(res) {
+							if(res != null) {
+								var items = res.items;
+								for (var i = 0; i < 5; i++) {
+									var obj = {};
+									obj.title = items[i].title;
+									obj.description = items[i].description;
+									obj.thumbnail = null;
+									obj.url = items[i].link;
+									obj.ref = "naver";
+									listadd.push(obj);
+								}
+							}
+						}
+					});
+				}
+				
+				console.log('Make HTML tag....');
+	
+				shuffle(listadd);
 			}
 			
-			if($('input[name=typeKakaoVideoEn]').val() == 1) {
-				console.log('Enter getting KakaoVideo');
-				$.ajax({
-					url : '/getKakaoVideo',
-					type : 'get',
-					data : {
-						'videoTopic' : $(selId).text()
-					},
-					async : false,
-					success : function(res) {
-						if(res != null) {
-							var documents = res.documents;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-// 								var datetime = documents[i].datetime;		
-								obj.title = documents[i].title;
-								obj.description = null;
-								obj.thumbnail = documents[i].thumbnail;
-								obj.url = documents[i].url;
-								obj.ref = "kakao";
-								listadd.push(obj);
-							}
-						}
-					}
-				});
-			}
-						
-			if($('input[name=typeKakaoBlogEn]').val() == 1) {
-				console.log('Enter getting KakaoBlog');
-				$.ajax({
-					url : '/getKakaoBlog',
-					type : 'get',
-					data : {
-						'blogTopic' : $(selId).text()
-					},
-					async : false,
-					success : function(res) {
-						if(res != null) {
-							var documents = res.documents;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-// 								var datetime = documents[i].datetime;
-// 								var blogname = documents[i].blogname;
-								obj.title = documents[i].title;
-								obj.description = documents[i].contents;
-								obj.thumbnail = documents[i].thumbnail;
-								obj.url = documents[i].url;
-								obj.ref = "kakao";
-								listadd.push(obj);
-							}
-						}
-					}
-				});
-			}
-			
-			
-			if($('input[name=typeNaverNewsEn]').val() == 1) {
-				console.log('Enter getting NaverNews');
-				$.ajax({
-					url : '/getNaverNews',
-					type : 'get',
-					data : {
-						'naverNewsTopic' : $(selId).text()
-					},
-					async : false,
-					success : function(res) {
-						if(res != null) {
-							var items = res.items;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-								obj.title = items[i].title;
-								obj.description = items[i].description;
-								obj.thumbnail = null;
-								obj.url = items[i].link;
-								obj.ref = "naver";
-								listadd.push(obj);
-							}
-						}
-					}
-				});
-			}
-
-			if($('input[name=typeNaverBlogEn]').val() == 1) {
-				console.log('Enter getting NaverBlog');
-				$.ajax({
-					url : '/getNaverBlog',
-					type : 'get',
-					data : {
-						'naverBlogTopic' : $(selId).text()
-					},
-					async : false,
-					success : function(res) {
-						if(res != null) {
-							var items = res.items;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-								obj.title = items[i].title;
-								obj.description = items[i].description;
-								obj.thumbnail = null;
-								obj.url = items[i].link;
-								obj.ref = "naver";
-								listadd.push(obj);
-							}
-						}
-					}
-				});
-			}
-			
-			if($('input[name=typeNaverCafeEn]').val() == 1) {
-				console.log('Enter getting NaverCafe');
-				$.ajax({
-					url : '/getNaverCafe',
-					type : 'get',
-					data : {
-						'naverCafe' : $(selId).text()
-					},
-					async : false,
-					success : function(res) {
-						if(res != null) {
-							var items = res.items;
-							for (var i = 0; i < 5; i++) {
-								var obj = {};
-								obj.title = items[i].title;
-								obj.description = items[i].description;
-								obj.thumbnail = null;
-								obj.url = items[i].link;
-								obj.ref = "naver";
-								listadd.push(obj);
-							}
-						}
-					}
-				});
-			}
-			
-			console.log('Make HTML tag....');
-
-			shuffle(listadd);
+			desListadd = listadd;
 			
 			var html = '';
 
-			for ( var i in listadd) {
+			console.log(desListadd);
+			
+			for ( var i in desListadd) {
 				html += '<div class="col-lg-4 col-md-6 mb-4">';
 				html += '<div class="card h-100">';
-				html += '<a href="' + listadd[i].url + '" target="_blank">';
+				html += '<small class="test" onclick="clicked(' + i + ')" style="color:red;padding:1px;"><i class="far fa-heart"></i></small>';
+				html += '<a href="' + desListadd[i].url + '" target="_blank">';
 
 				if (listadd[i].thumbnail != null) {
-					html += '<img class="card-img-top" src="' + listadd[i].thumbnail + '" alt="">';
+					html += '<img class="card-img-top" src="' + desListadd[i].thumbnail + '" alt="">';
 				}
 
 				html += '</a><div class="card-body">';
 				html += '<p class="card-title">'
-						+ listadd[i].title + '</p>';
+						+ desListadd[i].title + '</p>';
 
 				if (listadd[i].description != null) {
 					html += '<p class="card-text">'
-							+ listadd[i].description
+							+ desListadd[i].description
 							+ '</p></div>';
 				} else {
 					html += '<p class="card-text"></p></div>';
@@ -286,15 +317,15 @@
 
 				html += '<div class="card-footer">'
 				html += '<small class="text-muted">'
-				html += '<a href="' + listadd[i].url + '" target="_blank"> + Read more</a></small>'
-	 			
-	 			if (listadd[i].ref == "youtube" ){
+				html += '<a href="' + desListadd[i].url + '" target="_blank"> + Read more</a></small>'
+				
+				if (desListadd[i].ref == "youtube" ){
 	 				html += '<small style="position:absolute; right:21px; color:red;"><i class="fab fa-youtube fa-2x"></i></small>';
 	 			}
-	 			else if (listadd[i].ref == "kakao" ){
+	 			else if (desListadd[i].ref == "kakao" ){
 	 				html += '<small style="position:absolute; right:21px;"><img src="https://t1.kakaocdn.net/kakaocorp/admin/main-banner/136" class="img_thumb" width="26" height="26" alt=""></small>';
 	 			}
-	 			else if (listadd[i].ref == "naver" ){
+	 			else if (desListadd[i].ref == "naver" ){
 	 				html += '<small style="position:absolute; right:21px;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="icon__1Ak7E" aria-hidden="true"><g fill="none" fill-rule="evenodd"><path fill="#03C75A" d="M0 26h26V0H0z"></path><path fill="#FFF" d="M6.54 7.049H11l4.221 6.16v-6.16h4.398V18.95h-4.46l-4.22-6.161v6.161h-4.4z"></path></g></svg></small>'
 				}
 	 			html += '</div></div></div>'
@@ -306,5 +337,23 @@
 		$('document').ready(keyword);
 		
  		$('.list-group-item').click(keyword);
+ 		
+ 		function clicked(e){
+ 			$.ajax({
+				url : '/setCollect',
+				type : 'post',
+				data : {
+					'title' : desListadd[e].title,
+					'url' : desListadd[e].url,
+					'desc' : desListadd[e].description,
+					'thumb' : desListadd[e].thumbnail,
+					'src' : desListadd[e].ref,
+				},
+				async : false,
+				success : function(res) {
+					//alert('done');
+				}
+			});
+ 		}
 	</script>
 </html>

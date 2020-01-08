@@ -1,5 +1,7 @@
 package com.yonghyun.BoShow.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yonghyun.BoShow.model.Data;
 import com.yonghyun.BoShow.model.User;
+import com.yonghyun.BoShow.repository.DataRepository;
 import com.yonghyun.BoShow.repository.UserRepository;
 
 @Controller
@@ -102,5 +107,33 @@ public class UserController {
 		session.setAttribute("user_info", user);
 		userRepository.save(user);
 		return "userInfo";
+	}
+	
+	@Autowired
+	DataRepository dataRepository;
+	
+	@PostMapping("/setCollect")
+	public String setCollect(@ModelAttribute Data data) {
+		User sessionUser = (User) session.getAttribute("user_info");
+		
+		data.setTitle(data.getTitle());
+		data.setThumb(data.getThumb());
+		data.setDesc(data.getDesc());
+		data.setLink(data.getLink());
+		data.setSrc(data.getSrc());
+		data.setUser(sessionUser);
+		
+		dataRepository.save(data);
+			
+		return "redirect:/";
+	}
+	
+	@GetMapping("/getCollect")
+	@ResponseBody
+	public List<Data> getCollect() {
+		User sessionUser = (User) session.getAttribute("user_info");
+		List<Data> datas = dataRepository.findAllByUser(sessionUser);
+				
+		return datas;
 	}
 }
