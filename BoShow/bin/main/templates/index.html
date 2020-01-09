@@ -296,7 +296,11 @@
 			for ( var i in desListadd) {
 				html += '<div class="col-lg-4 col-md-6 mb-4">';
 				html += '<div class="card h-100">';
-				html += '<small class="test" onclick="clicked(' + i + ')" style="color:red;padding:1px;"><i class="far fa-heart"></i></small>';
+				if(selId == '#item0') {
+					html += '<small class="test" onclick="clickedMinus(' + i + ')" style="color:red;padding:1px;"><i class="fas fa-minus"></i></small>';
+				} else {
+					html += '<small class="test" onclick="clickedPlus(' + i + ')" style="color:red;padding:1px;"><i class="fas fa-plus"></i></small>';	
+				}
 				html += '<a href="' + desListadd[i].url + '" target="_blank">';
 
 				if (listadd[i].thumbnail != null) {
@@ -338,7 +342,7 @@
 		
  		$('.list-group-item').click(keyword);
  		
- 		function clicked(e){
+ 		function clickedPlus(e){
  			$.ajax({
 				url : '/setCollect',
 				type : 'post',
@@ -351,7 +355,26 @@
 				},
 				async : false,
 				success : function(res) {
-					//alert('done');
+					alert("즐겨찾기에 저장 되었습니다.");
+				}
+			});
+ 		}
+ 		
+ 		function clickedMinus(e){
+ 			$.ajax({
+				url : '/delCollect',
+				type : 'post',
+				data : {
+					'title' : desListadd[e].title,
+					'link' : desListadd[e].url,
+					'desc' : desListadd[e].description,
+					'thumb' : desListadd[e].thumbnail,
+					'src' : desListadd[e].ref,
+				},
+				async : false,
+				success : function(res) {
+					alert("즐겨찾기에서 삭제되었습니다.");
+					$('#item0').trigger('click');
 				}
 			});
  		}

@@ -114,16 +114,44 @@ public class UserController {
 	
 	@PostMapping("/setCollect")
 	public String setCollect(@ModelAttribute Data data) {
+		int ret = 1;
 		User sessionUser = (User) session.getAttribute("user_info");
 		
-		data.setTitle(data.getTitle());
-		data.setThumb(data.getThumb());
-		data.setDesc(data.getDesc());
-		data.setLink(data.getLink());
-		data.setSrc(data.getSrc());
-		data.setUser(sessionUser);
+		//Check title in DB
+		List<Data> dbDatas = dataRepository.findAllByUser(sessionUser);
+		for(int i=0; i<dbDatas.size(); i++) {
+			if(dbDatas.get(i).getTitle().equals(data.getTitle())) {
+				ret = 0;
+				break;
+			}
+		}
 		
-		dataRepository.save(data);
+		if(ret == 1) {
+			data.setTitle(data.getTitle());
+			data.setThumb(data.getThumb());
+			data.setDesc(data.getDesc());
+			data.setLink(data.getLink());
+			data.setSrc(data.getSrc());
+			data.setUser(sessionUser);
+			
+			dataRepository.save(data);
+		}
+			
+		return "redirect:/";
+	}
+	
+	@PostMapping("/delCollect")
+	public String delCollect(@ModelAttribute Data data) {
+		User sessionUser = (User) session.getAttribute("user_info");
+		
+		//Check title in DB
+		List<Data> dbDatas = dataRepository.findAllByUser(sessionUser);
+		for(int i=0; i<dbDatas.size(); i++) {
+			if(dbDatas.get(i).getTitle().equals(data.getTitle())) {
+				dataRepository.deleteById(dbDatas.get(i).getId());
+				break;
+			}
+		}
 			
 		return "redirect:/";
 	}

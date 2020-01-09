@@ -9,4 +9,6 @@ import com.yonghyun.BoShow.model.User;
 
 public interface DataRepository extends JpaRepository<Data, Long>{
 	public List<Data> findAllByUser(User user);
+
+	public void deleteById(Data data);
 }
