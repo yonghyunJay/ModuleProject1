@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 
-	@GetMapping({ "/signup" })
+	@GetMapping("/signup")
 	public String signup() {
 		return "signup";
 	}
@@ -163,5 +163,10 @@ public class UserController {
 		List<Data> datas = dataRepository.findAllByUser(sessionUser);
 				
 		return datas;
+	}
+	
+	@GetMapping("/aboutUs")
+	public String aboutUs() {
+		return "aboutUs";
 	}
 }
